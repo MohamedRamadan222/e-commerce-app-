@@ -1,8 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce/core/utils/storage_helper.dart';
 import 'package:ecommerce/features/auth/cubit/auth_state.dart';
 import 'package:ecommerce/features/auth/models/login_response_model.dart';
 import 'package:ecommerce/features/auth/repo/auth_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/utils/service_locator.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepo) : super(AuthInitial());
@@ -24,5 +27,8 @@ class AuthCubit extends Cubit<AuthState> {
         emit((SuccessAuthState('Login Successfully')));
       },
     );
+  }
+  void logout() async {
+    sl<StorageHelper>().removeToken();
   }
 }

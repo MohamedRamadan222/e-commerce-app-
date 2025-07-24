@@ -1,6 +1,5 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:ecommerce/core/utils/animated_snack_dialog.dart';
-import 'package:ecommerce/core/utils/storage_helper.dart';
 import 'package:ecommerce/core/widgets/loading_widget.dart';
 import 'package:ecommerce/features/auth/cubit/auth_cubit.dart';
 import 'package:ecommerce/features/auth/cubit/auth_state.dart';
@@ -12,7 +11,6 @@ import 'package:go_router/go_router.dart';
 import '../../core/routing/app_routs.dart';
 import '../../core/styling/app_colors.dart';
 import '../../core/styling/app_styles.dart';
-import '../../core/utils/service_locator.dart';
 import '../../core/widgets/custom_text_field.dart';
 import '../../core/widgets/primary_button_widget.dart';
 import '../../core/widgets/spacing.dart';
@@ -36,11 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     username = TextEditingController();
     password = TextEditingController();
-    sl<StorageHelper>().getToken().then((value) {
-      if (value != null && value.isNotEmpty) {
-        context.pushReplacementNamed(AppRoutes.mainScreen);
-      }
-    });
   }
 
   @override

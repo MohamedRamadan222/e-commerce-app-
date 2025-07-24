@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/routing/router_generation_config.dart';
 import 'core/styling/theme_data.dart';
 import 'core/utils/service_locator.dart';

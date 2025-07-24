@@ -2,9 +2,14 @@ import 'package:ecommerce/core/styling/app_styles.dart';
 import 'package:ecommerce/core/widgets/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../models/cart_model.dart';
 
 class CartItemWidget extends StatelessWidget {
-  const CartItemWidget({super.key});
+  final Product product;
+
+  const CartItemWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +24,16 @@ class CartItemWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 83.w,
-              height: 79.h,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(8.r),
+            Shimmer.fromColors(
+              highlightColor: Colors.grey[100]!,
+              baseColor:  Colors.grey[300]!,
+              child: Container(
+                width: 83.w,
+                height: 79.h,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
               ),
             ),
             const WidthSpace(16),
@@ -35,7 +44,7 @@ class CartItemWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Title', style: AppStyles.black15BoldStyle),
+                      Text('Product Item ${product.productId}', style: AppStyles.black15BoldStyle),
                       const Spacer(),
                       Icon(Icons.delete, color: Colors.red),
                     ],

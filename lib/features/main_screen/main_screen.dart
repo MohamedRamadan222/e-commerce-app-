@@ -1,5 +1,7 @@
 import 'package:ecommerce/features/account/account_screen.dart';
+import 'package:ecommerce/features/auth/cubit/auth_cubit.dart';
 import 'package:ecommerce/features/cart/cart_screen.dart';
+import 'package:ecommerce/features/cart/cubit/cart_cubit.dart';
 import 'package:ecommerce/features/home_screen/cubit/categories_cubit.dart';
 import 'package:ecommerce/features/home_screen/cubit/product_cubit.dart';
 import 'package:ecommerce/features/home_screen/home_screen.dart';
@@ -27,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
       child: HomeScreen(),
     ),
     CartScreen(),
-    AccountScreen(),
+    BlocProvider(create: (context) => sl<AuthCubit>(), child: AccountScreen()),
   ];
 
   @override
@@ -45,6 +47,9 @@ class _MainScreenState extends State<MainScreen> {
           setState(() {
             currentIndex = value;
           });
+          if (value == 1) {
+            context.read<CartCubit>().fetchCarts();
+          }
         },
         items: [
           BottomNavigationBarItem(

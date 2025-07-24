@@ -17,7 +17,7 @@ class DioHelper {
     dio!.interceptors.add(PrettyDioLogger());
   }
 
-  getRequest({required String endPoint, Map<String, dynamic>? query}) async {
+  Future<Response> getRequest({required String endPoint, Map<String, dynamic>? query}) async {
     try {
       Response response = await dio!.get(endPoint, queryParameters: query);
 
@@ -27,12 +27,25 @@ class DioHelper {
     }
   }
 
-  postRequest({
+  Future<Response> postRequest({
     required String endPoint,
     required Map<String, dynamic> data,
   }) async {
     try {
       Response response = await dio!.post(endPoint, data: data);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> putRequest({
+    required String endPoint,
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      Response response = await dio!.put(endPoint, data: data);
 
       return response;
     } catch (e) {
